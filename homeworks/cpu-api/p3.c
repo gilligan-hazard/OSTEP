@@ -7,11 +7,11 @@
 int main(int argc, char *argv[])
 {
     char path[] = "./p3.output";
-    char child_wr_buf[] = "hello\n";
-    char parent_wr_buf[] = "goodbye\n";
+    char child_msg[] = "hello\n";
+    char parent_msg[] = "goodbye\n";
 
-    int child_wr_buf_size = strlen(child_wr_buf);
-    int parent_wr_buf_size = strlen(parent_wr_buf);
+    int child_msg_size = strlen(child_msg);
+    int parent_msg_size = strlen(parent_msg);
 
     int wr_fd = open(path, O_CREAT | O_RDWR | O_TRUNC, S_IRWXU);
     if (wr_fd < 0)
@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
     }
     else if (rc == 0)
     {
-        if (write(wr_fd, child_wr_buf, child_wr_buf_size) < 0)
+        if (write(wr_fd, child_msg, child_msg_size) < 0)
         {
             fprintf(stderr, "[child] failed to write to file\n");
             exit(1);
@@ -37,8 +37,8 @@ int main(int argc, char *argv[])
     else
     {
         // poll file for child process greeting
-        char parent_rd_buf[child_wr_buf_size];
-        int parent_rd_buf_size = 0;
+        char buf[child_msg_size];
+        int buf_size = 0;
 
         int rd_fd = open(path, O_RDONLY);
         if (rd_fd < 0)
@@ -47,17 +47,17 @@ int main(int argc, char *argv[])
             exit(1);
         }
 
-        while (parent_rd_buf_size < child_wr_buf_size)
+        while (buf_size < child_msg_size)
         {
-            parent_rd_buf_size = read(rd_fd, parent_rd_buf, child_wr_buf_size);
-            if (parent_rd_buf_size < 0)
+            buf_size = read(rd_fd, buf, child_msg_size);
+            if (buf_size < 0)
             {
                 fprintf(stderr, "[parent] failed to read from file\n");
                 exit(1);
             }
-            if (parent_rd_buf_size == child_wr_buf_size)
+            if (buf_size == child_msg_size)
             {
-                if (write(wr_fd, parent_wr_buf, parent_wr_buf_size) < 0)
+                if (write(wr_fd, parent_msg, parent_msg_size) < 0)
                 {
                     fprintf(stderr, "[parent] failed to write to file\n");
                     exit(1);
