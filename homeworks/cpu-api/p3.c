@@ -44,17 +44,17 @@ int main(int argc, char *argv[])
             exit(1);
         }
 
-        int buf_size = 0;
-        while (buf_size < child_msg_size)
+        int n = 0;
+        while (n < child_msg_size)
         {
             char buf[child_msg_size];
-            buf_size = read(rd_fd, buf, child_msg_size);
-            if (buf_size < 0)
+            n = read(rd_fd, buf, child_msg_size);
+            if (n < 0)
             {
                 fprintf(stderr, "[parent] failed to read from file\n");
                 exit(1);
             }
-            if (buf_size == child_msg_size)
+            if (n == child_msg_size)
             {
                 if (write(wr_fd, parent_msg, parent_msg_size) < 0)
                 {
