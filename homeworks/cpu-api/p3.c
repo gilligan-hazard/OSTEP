@@ -37,9 +37,6 @@ int main(int argc, char *argv[])
     else
     {
         // poll file for child process greeting
-        char buf[child_msg_size];
-        int buf_size = 0;
-
         int rd_fd = open(path, O_RDONLY);
         if (rd_fd < 0)
         {
@@ -47,8 +44,10 @@ int main(int argc, char *argv[])
             exit(1);
         }
 
+        int buf_size = 0;
         while (buf_size < child_msg_size)
         {
+            char buf[child_msg_size];
             buf_size = read(rd_fd, buf, child_msg_size);
             if (buf_size < 0)
             {
