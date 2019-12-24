@@ -21,19 +21,19 @@ int main(int argc, char *argv[])
     }
     else if (rc == 0)
     {
-        char child_buf[] = "Yes, man is mortal, but that isn't so bad.\n";
-        if (write(fd, child_buf, strlen(child_buf)) == -1)
+        char child_buf[] = "hello\n";
+        if (write(fd, child_buf, strlen(child_buf)) < 0)
         {
-            fprintf(stderr, "[child] failed to write to file");
+            fprintf(stderr, "[child] failed to write to file\n");
             exit(1);
         }
     }
     else
     {
-        char parent_buf[] = "What's bad is that sometimes he's unexpectedly mortal, that's the rub!\n";
-        if (write(fd, parent_buf, strlen(parent_buf)) == -1)
+        char parent_buf[] = "goodbye\n";
+        if (write(fd, parent_buf, strlen(parent_buf)) < 0)
         {
-            fprintf(stderr, "[parent] failed to write to file");
+            fprintf(stderr, "[parent] failed to write to file\n");
             exit(1);
         }
     }
