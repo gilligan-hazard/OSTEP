@@ -14,8 +14,8 @@ int main(int argc, char *argv[])
     {
         close(STDOUT_FILENO);
 
-        // after closing the descriptor, output does not print
-        printf("%s", "gophers in space");
+        // after closing standard output, the message does not print
+        printf("gophers in space");
     }
     return 0;
 }
