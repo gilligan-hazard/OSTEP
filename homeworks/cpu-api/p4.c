@@ -13,11 +13,11 @@ int main(int argc, char *argv[])
     }
     else if (rc == 0)
     {
-        char input_err[] = "usage: %s cmd\n" \
+        char usage[] = "usage: %s cmd\n" \
         "  cmd: exec() function to run [execl, execle, execlp, execv, or execvp]\n";
         if (argc < 2)
         {
-            fprintf(stderr, input_err, argv[0]);
+            fprintf(stderr, usage, argv[0]);
             exit(1);
         }
         char *cmd = argv[1];
@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
 
         else
         {
-            fprintf(stderr, input_err, argv[0]);
+            fprintf(stderr, usage, argv[0]);
             exit(1);
         }
     }
