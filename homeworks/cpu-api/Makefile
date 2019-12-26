@@ -1,7 +1,7 @@
-all: p1 p2 p3 p4-execl p4-execle p4-execlp p4-execv p4-execvp p5
+all: p1 p2 p3 p4-execl p4-execle p4-execlp p4-execv p4-execvp p5 p6
 
 clean:
-	rm -f p1 p2 p3 p4-execl p4-execle p4-execlp p4-execv p4-execvp p5
+	rm -f p1 p2 p3 p4-execl p4-execle p4-execlp p4-execv p4-execvp p5 p6
 
 p1: p1.c
 	gcc -o p1 p1.c -Wall
@@ -29,3 +29,6 @@ p4-execvp: p4-execvp.c
 
 p5: p5.c
 	gcc -o p5 p5.c -Wall
+
+p6: p6.c
+	gcc -o p6 p6.c -Wall

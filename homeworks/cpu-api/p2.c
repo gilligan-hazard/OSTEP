@@ -21,8 +21,8 @@ int main(int argc, char *argv[])
     }
     else if (rc == 0)
     {
-        char child_buf[] = "hello\n";
-        if (write(fd, child_buf, strlen(child_buf)) < 0)
+        char child_msg[] = "hello\n";
+        if (write(fd, child_msg, strlen(child_msg)) < 0)
         {
             fprintf(stderr, "[child] failed to write to file\n");
             exit(1);
@@ -30,8 +30,8 @@ int main(int argc, char *argv[])
     }
     else
     {
-        char parent_buf[] = "goodbye\n";
-        if (write(fd, parent_buf, strlen(parent_buf)) < 0)
+        char parent_msg[] = "goodbye\n";
+        if (write(fd, parent_msg, strlen(parent_msg)) < 0)
         {
             fprintf(stderr, "[parent] failed to write to file\n");
             exit(1);
