@@ -13,15 +13,14 @@ int main(int argc, char *argv[])
     }
     else if (rc == 0)
     {
-        char input_err[] = "specify exec() function to run [options: execl, execle, execlp, execv, execvp]\n";
+        char input_err[] = "usage: %s cmd\n" \
+        "  cmd: exec() function to run [execl, execle, execlp, execv, or execvp]\n";
         if (argc < 2)
         {
-            fprintf(stderr, "%s", input_err);
+            fprintf(stderr, input_err, argv[0]);
             exit(1);
         }
-
         char *cmd = argv[1];
-        printf("exec() function: %s()\n", cmd);
 
         if (strcmp(cmd, "execl") == 0)
         {
@@ -68,7 +67,7 @@ int main(int argc, char *argv[])
 
         else
         {
-            fprintf(stderr, "%s", input_err);
+            fprintf(stderr, input_err, argv[0]);
             exit(1);
         }
     }
