@@ -64,11 +64,10 @@ int main(int argc, char *argv[])
 
         else
         {
-            // no need for either end
             close(fd[0]);
             close(fd[1]);
 
-            // wait for children, for aesthetic reasons
+            // wait for the children, for aesthetic reasons
             int wc1 = waitpid(rc1, NULL, 0);
             int wc2 = waitpid(rc2, NULL, 0);
             if (wc1 < 0 || wc2 < 0)
