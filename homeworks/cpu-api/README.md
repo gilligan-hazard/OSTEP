@@ -1,6 +1,6 @@
 # CPU API
 
-Solutions for [Interlude: Process API](http://pages.cs.wisc.edu/~remzi/OSTEP/cpu-api.pdf) end-of-chapter homework.
+Solutions for [Interlude: Process API](http://pages.cs.wisc.edu/~remzi/OSTEP/cpu-api.pdf) end-of-chapter exercises.
 
 To compile:
 
@@ -18,7 +18,7 @@ prompt> ./p1
 prompt> ./p8
 ```
 
-For p4, specify the exec variant (execl, execle, execlp, execv, or execvp) with which to run `ls`:
+For p4, specify the `exec` variant (`execl`, `execle`, `execlp`, `execv`, or `execvp`) with which to run `ls`:
 
 ```
 prompt> ./p4 execl
