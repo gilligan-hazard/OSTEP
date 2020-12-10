@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
     }
     else if (rc == 0)
     {
-        // wait() returns ECHILD error if used here
+        // wait() returns ECHILD error if used in child
         printf("[child] pid: %d\n", (int)getpid());
     }
     else
