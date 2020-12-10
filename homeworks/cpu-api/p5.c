@@ -1,5 +1,7 @@
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 
 int main(int argc, char *argv[])
@@ -12,7 +14,14 @@ int main(int argc, char *argv[])
     }
     else if (rc == 0)
     {
-        // wait() returns an ECHILD error if used in the child
+        // wait() returns an ECHILD ("No child processes") error if used in the child
+        int wc = wait(NULL);
+        if (wc < 0)
+        {
+            fprintf(stderr, "%s\n", strerror(errno));
+            exit(1);
+        }
+
         printf("[child] pid: %d\n", (int)getpid());
     }
     else
