@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
     {
         if (write(fd, child_msg, child_msg_size) < 0)
         {
-            fprintf(stderr, "[child] failed to open file\n");
+            fprintf(stderr, "[child] failed to write to file\n");
             exit(1);
         }
     }
