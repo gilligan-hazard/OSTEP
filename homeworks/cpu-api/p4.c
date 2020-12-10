@@ -65,8 +65,7 @@ int main(int argc, char *argv[])
             execvp(file, args);
         }
 
-        // the execvpe() function is a GNU extension; macOS supports execvP
-        else if (strcmp(cmd, "execvP") == 0)
+        else if (strcmp(cmd, "execvP") == 0) // the execvpe() function is a GNU extension; macOS supports execvP()
         {
             char *file = strdup("ls");
             char *searchPath = strdup("/bin");
