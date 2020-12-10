@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
         int wc = wait(NULL);
         if (wc < 0)
         {
-            fprintf(stderr, "wait failed\n");
+            fprintf(stderr, "%s\n", strerror(errno));
             exit(1);
         }
         printf("[parent] pid of terminated child: %d\n", wc);
