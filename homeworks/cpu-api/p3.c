@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
     int fd = open(path, O_CREAT | O_RDWR | O_TRUNC, S_IRWXU);
     if (fd < 0)
     {
-        fprintf(stderr, "failed to open file for writing\n");
+        fprintf(stderr, "failed to open file\n");
         exit(1);
     }
 
