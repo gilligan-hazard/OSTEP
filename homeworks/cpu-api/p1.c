@@ -16,13 +16,13 @@ int main(int argc, char *argv[])
     else if (rc == 0)
     {
         printf("[child] x=%d\n", x);
-        printf("[child] assign new value to x\n");
+        printf("[child] change value of x\n");
         x = 1;
         printf("[child] x=%d\n", x);
     }
     else
     {
-        printf("[parent] assign new value to x\n");
+        printf("[parent] change value of x\n");
         x = 10000;
         printf("[parent] x=%d\n", x);
     }
