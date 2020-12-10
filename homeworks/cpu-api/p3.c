@@ -52,6 +52,6 @@ int main(int argc, char *argv[])
             fprintf(stderr, "[parent] failed to write to file\n");
             exit(1);
         }
-        return 0;
     }
+    return 0;
 }
