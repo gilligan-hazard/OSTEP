@@ -18,7 +18,7 @@ prompt> ./p1
 prompt> ./p8
 ```
 
-For `p4`, specify the `exec` variant (`execl`, `execle`, `execlp`, `execv`, or `execvp`) with which to run `ls`:
+For `p4`, specify the `exec` variant (`execl`, `execle`, `execlp`, `execv`, `execvp`, or `execvP`) with which to run `ls`:
 
 ```
 prompt> ./p4 execl

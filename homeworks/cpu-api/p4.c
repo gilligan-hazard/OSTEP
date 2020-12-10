@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     else if (rc == 0)
     {
         char usage[] = "usage: %s cmd\n" \
-        "  cmd: exec() function to run [execl, execle, execlp, execv, or execvp]\n";
+        "  cmd: exec() function to run [execl, execle, execlp, execv, execvp, or execvP]\n";
         if (argc < 2)
         {
             fprintf(stderr, usage, argv[0]);
@@ -63,6 +63,17 @@ int main(int argc, char *argv[])
             args[0] = file;
             args[1] = NULL;
             execvp(file, args);
+        }
+
+        // the execvpe() function is a GNU extension; macOS supports execvP
+        else if (strcmp(cmd, "execvP") == 0)
+        {
+            char *file = strdup("ls");
+            char *searchPath = strdup("/bin");
+            char *args[2];
+            args[0] = file;
+            args[1] = NULL;
+            execvP(file, searchPath, args);
         }
 
         else
