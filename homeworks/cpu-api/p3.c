@@ -13,8 +13,8 @@ int main(int argc, char *argv[])
     int child_msg_size = strlen(child_msg);
     int parent_msg_size = strlen(parent_msg);
 
-    int wr_fd = open(path, O_CREAT | O_RDWR | O_TRUNC, S_IRWXU);
-    if (wr_fd < 0)
+    int fd = open(path, O_CREAT | O_RDWR | O_TRUNC, S_IRWXU);
+    if (fd < 0)
     {
         fprintf(stderr, "failed to open file for writing\n");
         exit(1);
@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
     }
     else if (rc == 0)
     {
-        if (write(wr_fd, child_msg, child_msg_size) < 0)
+        if (write(fd, child_msg, child_msg_size) < 0)
         {
             fprintf(stderr, "[child] failed to write to file\n");
             exit(1);
@@ -36,19 +36,10 @@ int main(int argc, char *argv[])
     }
     else
     {
-        // poll file for child process greeting
-        int rd_fd = open(path, O_RDONLY);
-        if (rd_fd < 0)
-        {
-            fprintf(stderr, "[parent] failed to open file for reading\n");
-            exit(1);
-        }
-
         int n = 0;
         while (n < child_msg_size)
         {
-            char buf[child_msg_size];
-            n = read(rd_fd, buf, child_msg_size);
+            n = lseek(fd, 0, SEEK_CUR);
             if (n < 0)
             {
                 fprintf(stderr, "[parent] failed to read from file\n");
@@ -56,7 +47,7 @@ int main(int argc, char *argv[])
             }
             if (n == child_msg_size)
             {
-                if (write(wr_fd, parent_msg, parent_msg_size) < 0)
+                if (write(fd, parent_msg, parent_msg_size) < 0)
                 {
                     fprintf(stderr, "[parent] failed to write to file\n");
                     exit(1);
