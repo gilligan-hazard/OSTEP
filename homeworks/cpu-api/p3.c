@@ -42,18 +42,16 @@ int main(int argc, char *argv[])
             n = lseek(fd, 0, SEEK_CUR);
             if (n < 0)
             {
-                fprintf(stderr, "[parent] failed to read from file\n");
+                fprintf(stderr, "[parent] failed to read file offset\n");
                 exit(1);
             }
-            if (n == child_msg_size)
-            {
-                if (write(fd, parent_msg, parent_msg_size) < 0)
-                {
-                    fprintf(stderr, "[parent] failed to write to file\n");
-                    exit(1);
-                }
-                return 0;
-            }
         }
+
+        if (write(fd, parent_msg, parent_msg_size) < 0)
+        {
+            fprintf(stderr, "[parent] failed to write to file\n");
+            exit(1);
+        }
+        return 0;
     }
 }
