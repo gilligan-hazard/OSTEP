@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
     else
     {
         // waitpid() is a general interface to wait for any child process or group of child processes
-        // exposes options to wait for more specific behaviors
+        // exposes options to wait for child behaviors more specific than termination
         // can request resource utilization statistics for the child
         int wc = waitpid(rc, NULL, 0);
         if (wc < 0)
