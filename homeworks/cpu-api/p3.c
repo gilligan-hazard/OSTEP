@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
     int child_msg_size = strlen(child_msg);
     int parent_msg_size = strlen(parent_msg);
 
+    // open a file, p3.output
     int fd = open(path, O_CREAT | O_RDWR | O_TRUNC, S_IRWXU);
     if (fd < 0)
     {
@@ -20,6 +21,7 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
+    // create a child process 
     int rc = fork();
     if (rc < 0)
     {
@@ -28,6 +30,7 @@ int main(int argc, char *argv[])
     }
     else if (rc == 0)
     {
+        // write to p3.output from the child process
         if (write(fd, child_msg, child_msg_size) < 0)
         {
             fprintf(stderr, "[child] failed to write to file\n");
@@ -36,6 +39,7 @@ int main(int argc, char *argv[])
     }
     else
     {
+        // wait until the file descriptor's offset matches the length of the child message
         int n = 0;
         while (n < child_msg_size)
         {
@@ -47,6 +51,7 @@ int main(int argc, char *argv[])
             }
         }
 
+        // write to p3.output from the parent process
         if (write(fd, parent_msg, parent_msg_size) < 0)
         {
             fprintf(stderr, "[parent] failed to write to file\n");

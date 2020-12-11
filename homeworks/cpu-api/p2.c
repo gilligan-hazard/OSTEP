@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
     }
     else if (rc == 0)
     {
-        // write p2.output from the child process
+        // write to p2.output from the child process
         char child_msg[] = "hello\n";
         if (write(fd, child_msg, strlen(child_msg)) < 0)
         {
@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
     }
     else
     {
-        // write p2.output from the parent process
+        // write to p2.output from the parent process
         char parent_msg[] = "goodbye\n";
         if (write(fd, parent_msg, strlen(parent_msg)) < 0)
         {
