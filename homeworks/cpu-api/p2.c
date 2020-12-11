@@ -6,7 +6,7 @@
 
 int main(int argc, char *argv[])
 {
-    // open file, p2.output
+    // open a file, p2.output
     int fd = open("./p2.output", O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
     if (fd < 0)
     {
