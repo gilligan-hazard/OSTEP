@@ -25,53 +25,54 @@ int main(int argc, char *argv[])
         if (strcmp(cmd, "execl") == 0)
         {
             char *path = strdup("/bin/ls");
-            char *arg0 = path;
-            char *arg1 = (char *)NULL;
+            char *arg0 = path; // one or more pointers to strings; file name first
+            char *arg1 = (char *)NULL; // terminated by null pointer
             execl(path, arg0, arg1);
         }
 
         else if (strcmp(cmd, "execle") == 0)
         {
             char *path = strdup("/bin/ls");
-            char *arg0 = path;
-            char *arg1 = (char *)NULL;
-            char *envp[] = {NULL};
+            char *arg0 = path; // one or more pointers to strings; file name first
+            char *arg1 = (char *)NULL; // terminated by null pointer
+            char *envp[] = {NULL}; // environment of executed process; array of pointers terminated by NULL pointer
             execle(path, arg0, arg1, envp);
         }
 
         else if (strcmp(cmd, "execlp") == 0)
         {
-            char *file = strdup("ls"); // searches for an executable if the filename does not contain a slash
-            char *arg0 = file;
-            char *arg1 = (char *)NULL;
+            char *file = strdup("ls"); // searches for executable in PATH if filename does not contain slash
+            char *arg0 = file; // one or more pointers to strings; file name first
+            char *arg1 = (char *)NULL; // terminated by null pointer
             execlp(file, arg0, arg1);
         }
 
         else if (strcmp(cmd, "execv") == 0)
         {
             char *path = strdup("/bin/ls");
-            char *args[2];
-            args[0] = path;
-            args[1] = NULL;
+            char *args[2]; // array of pointers
+            args[0] = path; // file name first
+            args[1] = NULL; // terminated by null pointer
             execv(path, args);
         }
 
         else if (strcmp(cmd, "execvp") == 0)
         {
-            char *file = strdup("ls"); // searches for an executable if the filename does not contain a slash
-            char *args[2];
-            args[0] = file;
-            args[1] = NULL;
+            char *file = strdup("ls"); // searches for executable in PATH if filename does not contain slash
+            char *args[2]; // array of pointers
+            args[0] = file; // file name first
+            args[1] = NULL; // terminated by null pointer
             execvp(file, args);
         }
 
-        else if (strcmp(cmd, "execvP") == 0) // the execvpe() function is a GNU extension; macOS supports execvP()
+        // the execvpe() function is a GNU extension; macOS uses execvP()
+        else if (strcmp(cmd, "execvP") == 0)
         {
-            char *file = strdup("ls");
+            char *file = strdup("ls"); // searches for executable in searchPath if filename does not contain slash
             char *searchPath = strdup("/bin");
-            char *args[2];
-            args[0] = file;
-            args[1] = NULL;
+            char *args[2]; // array of pointers
+            args[0] = file; // file name first
+            args[1] = NULL; // terminated by null pointer
             execvP(file, searchPath, args);
         }
 
