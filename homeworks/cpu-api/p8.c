@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
         // close read end in child1
         close(fd[0]);
         
-        execlp("grep", "grep", "pipe", "-o", "p8.c", (char *)NULL);
+        execlp("grep", "grep", "pipe", "-o", "p8.c", NULL);
     }
 
     else
@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
             // close write end in child2
             close(fd[1]);
 
-            execlp("wc", "wc", "-l", (char *)NULL);
+            execlp("wc", "wc", "-l", NULL);
         }
 
         else
