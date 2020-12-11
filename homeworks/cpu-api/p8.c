@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
         // child2: read end of the pipe -> standard input
         else if (rc2 == 0)
         {
-            // cllose standard input
+            // close standard input
             close(STDIN_FILENO);
 
             // duplicate the read end of the pipe onto the lowest-numbered unused
