@@ -1,9 +1,12 @@
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 
 int main(int argc, char *argv[])
 {
+    // create a child process
     int rc = fork();
     if (rc < 0)
     {
@@ -12,10 +15,12 @@ int main(int argc, char *argv[])
     }
     else if (rc == 0)
     {
+        // close standard output
         close(STDOUT_FILENO);
 
-        // after closing standard output, the message does not print
+        // printf() fails with EBADF, Bad file descriptor
         printf("gophers in space");
+        fprintf(stderr, "print failed: %s\n", strerror(errno));
     }
     return 0;
 }
