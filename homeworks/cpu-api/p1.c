@@ -4,7 +4,7 @@
 
 int main(int argc, char *argv[])
 {
-    // set value of x from main process
+    // set the value of x from the main process
     int x = 100;
     printf("x=%d\n", x);
 
@@ -16,16 +16,16 @@ int main(int argc, char *argv[])
     }
     else if (rc == 0)
     {
-        // check value of x in child process
+        // check the value of x in the child process
         printf("[child] x=%d\n", x);
 
-        // change value of x in child process
+        // change the value of x in the child process
         x = 1;
         printf("[child] x=%d\n", x);
     }
     else
     {
-        // change value of x in parent process
+        // change the value of x in the parent process
         x = 10000;
         printf("[parent] x=%d\n", x);
     }
