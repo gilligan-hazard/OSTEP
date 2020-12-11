@@ -6,6 +6,7 @@
 
 int main(int argc, char *argv[])
 {
+    // create a child process
     int rc = fork();
     if (rc < 0)
     {
@@ -14,23 +15,23 @@ int main(int argc, char *argv[])
     }
     else if (rc == 0)
     {
-        // wait() returns an ECHILD ("No child processes") error if used in the child
+        printf("[child] pid: %d\n", (int)getpid());
+
+        // in the child, wait() returns an error - ECHILD, No child processes
         int wc = wait(NULL);
         if (wc < 0)
         {
-            fprintf(stderr, "%s\n", strerror(errno));
+            fprintf(stderr, "wait failed: %s\n", strerror(errno));
             exit(1);
         }
-
-        printf("[child] pid: %d\n", (int)getpid());
     }
     else
     {
-        // wait() returns the process ID of the terminated child
+        // in the parent, wait() returns the process ID of the terminated child
         int wc = wait(NULL);
         if (wc < 0)
         {
-            fprintf(stderr, "%s\n", strerror(errno));
+            fprintf(stderr, "wait failed: %s\n", strerror(errno));
             exit(1);
         }
         printf("[parent] pid of terminated child: %d\n", wc);
